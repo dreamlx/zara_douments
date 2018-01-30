@@ -1,21 +1,9 @@
 ActiveAdmin.register Document do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-# 
+actions :index, :show, :create, :edit, :update, :new
 permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status
 belongs_to :storage, optional: true
 belongs_to :staff, optional: true
-menu priority: 5, label: '出入库管理' # so it's on the very left
+menu priority: 5, label: '文档箱管理' # so it's on the very left
 
 	sidebar "my records", only: [:show] do
     ul do
@@ -33,7 +21,7 @@ menu priority: 5, label: '出入库管理' # so it's on the very left
   		f.input :staff
   		f.input :storage
   		f.input :description
-  		f.input :status
+  		f.input :status, :collection => [['in_stock','in_stock'],['borrowed','borrowed'],['returned','returned'],['cleared','cleared']]
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons
 	end

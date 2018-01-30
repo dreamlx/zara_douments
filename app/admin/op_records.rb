@@ -1,34 +1,39 @@
 ActiveAdmin.register OpRecord do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+actions :index, :show, :create, :new, :update
 
 permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn
-menu label: "领取归还", priority: 4 # so it's on the very left
+menu label: "操作记录", priority: 4 # so it's on the very left
 belongs_to :staff, optional: true
 belongs_to :document, optional: true
 
 after_action :set_form, only: [:show, :edit, :update, :destroy]
 
+  index do
+    selectable_column
+    id_column
+    column :document
+    column :staff
+    column :description
+    column 'status' do |o|
+      if o.document
+        o.document.status 
+      end
+    end
+    actions
+  end
+
   controller do
     def set_form
       @op_record = OpRecord.find(resource)
       document = Document.find(@op_record.document)
-      if document.status != 'in_stock'
-      	document.status = 'borrowed'
-      else
-      	document.status = 'in_stock'
+      unless document.blank?
+        if document.status != 'in_stock'
+        	document.status = 'borrowed'
+        else
+        	document.status = 'in_stock'
+        end
+        document.save
       end
-      document.save
     end
   end
 
