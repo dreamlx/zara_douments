@@ -15,12 +15,12 @@ ActiveAdmin.register Document do
 permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status
 belongs_to :storage, optional: true
 belongs_to :staff, optional: true
-menu priority: 5 # so it's on the very left
+menu priority: 5, label: '出入库管理' # so it's on the very left
 
 	sidebar "my records", only: [:show] do
     ul do
       #li link_to "Documents",    admin_staff_documents_path(resource)
-      li link_to "Records",    admin_document_borrow_records_path(resource)
+      li link_to "Records",    admin_document_op_records_path(resource)
     end
   end
 

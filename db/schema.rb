@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129042529) do
+ActiveRecord::Schema.define(version: 20180130060330) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,16 +46,6 @@ ActiveRecord::Schema.define(version: 20180129042529) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "borrow_records", force: :cascade do |t|
-    t.string   "document_id"
-    t.string   "staff_id"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "document_sn"
-    t.string   "staff_sn"
-  end
-
   create_table "cities", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -72,6 +62,16 @@ ActiveRecord::Schema.define(version: 20180129042529) do
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "op_records", force: :cascade do |t|
+    t.string   "document_id"
+    t.string   "staff_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "document_sn"
+    t.string   "staff_sn"
   end
 
   create_table "staffs", force: :cascade do |t|

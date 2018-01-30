@@ -17,7 +17,7 @@ ActiveAdmin.register Staff do
  	sidebar "my records", only: [:show] do
     ul do
       li link_to "Documents",    admin_staff_documents_path(resource)
-      #li link_to "Records",    admin_staff_borrow_records_path(resource)
+      #li link_to "Records",    admin_staff_op_records_path(resource)
     end
   end
 end

@@ -1,4 +1,4 @@
-class BorrowRecord < ActiveRecord::Base
+class OpRecord < ActiveRecord::Base
 
 	#validates :staff_sn, presence: true
 	validates :document_sn, presence: true

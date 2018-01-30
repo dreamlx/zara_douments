@@ -1,4 +1,4 @@
-ActiveAdmin.register BorrowRecord do
+ActiveAdmin.register OpRecord do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -13,7 +13,7 @@ ActiveAdmin.register BorrowRecord do
 # end
 
 permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn
-menu priority: 4 # so it's on the very left
+menu label: "领取归还", priority: 4 # so it's on the very left
 belongs_to :staff, optional: true
 belongs_to :document, optional: true
 
@@ -21,8 +21,8 @@ after_action :set_form, only: [:show, :edit, :update, :destroy]
 
   controller do
     def set_form
-      @borrow_record = BorrowRecord.find(resource)
-      document = Document.find(@borrow_record.document)
+      @op_record = OpRecord.find(resource)
+      document = Document.find(@op_record.document)
       if document.status != 'in_stock'
       	document.status = 'borrowed'
       else
