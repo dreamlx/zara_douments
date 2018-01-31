@@ -14,26 +14,17 @@ after_action :set_form, only: [:show, :edit, :update, :destroy]
     column :document
     column :staff
     column :description
-    column 'status' do |o|
-      if o.document
-        o.document.status 
-      end
-    end
+    column 'status'
     actions
   end
 
   controller do
     def set_form
-      @op_record = OpRecord.find(resource)
-      document = Document.find(@op_record.document)
-      unless document.blank?
-        if document.status != 'in_stock'
-        	document.status = 'borrowed'
-        else
-        	document.status = 'in_stock'
-        end
-        document.save
-      end
+      # @op_record = OpRecord.find(resource)
+      # document = Document.find(@op_record.document)
+      # unless document.blank?
+      #   @op_record.status = document.status
+      # end
     end
   end
 
@@ -45,6 +36,7 @@ after_action :set_form, only: [:show, :edit, :update, :destroy]
   		f.input :staff
   		f.input :document
   		f.input :description
+      f.input :status, :collection => [['add','add'],['borrow','borrow'],['return','return'],['remove','remove']]
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons
 	end

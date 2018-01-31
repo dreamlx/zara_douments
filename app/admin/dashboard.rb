@@ -11,8 +11,8 @@ ActiveAdmin.register_page "Dashboard" do
             li link_to "初始化员工", admin_staffs_path
             hr
 
-            li link_to "出入库操作", admin_documents_path
-            li link_to "借还文档", admin_op_records_path
+            li link_to "文档管理", admin_documents_path
+            li link_to "操作记录", admin_op_records_path
             #li link_to "Milestones", admin_project_milestones_path(resource)
         end
     end

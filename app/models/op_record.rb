@@ -13,7 +13,7 @@ class OpRecord < ActiveRecord::Base
 
 	belongs_to :staff
 	belongs_to :document
-
+	belongs_to :team
 	before_update :reset_me
 	before_create :reset_me
 
@@ -31,15 +31,17 @@ class OpRecord < ActiveRecord::Base
 
 	def change_status
 		if self.document
-			if self.document.status == 'in_stock'
-				self.document.status = 'borrowed'
+			case self.status
+				when 'add'
+					self.document.status = 'in'
+				when 'borrowed'
+					self.document.status = 'out'
+				when 'returned'
+					self.document.status = 'out'
+				when 'removed'
+					self.document.status = 'remove'
+				end
 				self.document.save
-			end
-
-			if self.document.status == 'borrowed'
-				self.document.status = 'returned'
-				self.document.save
-			end
 		end
 	end
 

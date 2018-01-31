@@ -7,6 +7,7 @@ class Document < ActiveRecord::Base
 
 	before_update :reset_me
 	before_create :reset_me
+	after_create :add_op
 
 	def reset_me
 		if self.status.blank?
@@ -16,5 +17,13 @@ class Document < ActiveRecord::Base
 		if self.title.blank?
 			self.title = self.code
 		end
+	end
+
+	def add_op
+		op = OpRecord.new
+		op.document_sn = self.code
+		op.document_id = self.id
+		op.status = 'add'
+		op.save
 	end
 end

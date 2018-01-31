@@ -15,13 +15,13 @@ menu priority: 5, label: '文档箱管理' # so it's on the very left
    form do |f|
   	f.semantic_errors # shows errors on :base
   	f.inputs do
-  		f.input :title
+  		#f.input :title
   		f.input :city
   		f.input :code
   		f.input :staff
   		f.input :storage
   		f.input :description
-  		f.input :status, :collection => [['in_stock','in_stock'],['borrowed','borrowed'],['returned','returned'],['cleared','cleared']]
+  		#f.input :status, :collection => [['in','in'],['out','out'],['removed','removed']]
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons
 	end
