@@ -8,8 +8,8 @@ class Staff < ActiveRecord::Base
 	before_create :reset_me
 
 	def reset_me
-		if self.title.blank?
-			self.title = self.code
+		if self.name.blank?
+			self.name = self.code
 		end
 	end
 end
