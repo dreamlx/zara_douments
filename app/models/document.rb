@@ -3,6 +3,7 @@ class Document < ActiveRecord::Base
 	belongs_to :storage
 	belongs_to :staff
 	belongs_to :team
+	belongs_to :legal_entity
 	has_many :op_records
 	validates :code, presence: true
 

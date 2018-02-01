@@ -16,7 +16,7 @@ menu priority: 5, label: 'Documents management' # so it's on the very left
     selectable_column
     column :code
     column :storage
-    #column :legal_entity
+    column :legal_entity
     column :team
     column :city
     column :description
@@ -31,7 +31,7 @@ menu priority: 5, label: 'Documents management' # so it's on the very left
   		f.input :city
   		f.input :code
       f.input :team
-      #f.input :legal_entity
+      f.input :legal_entity
   		#f.input :staff
   		f.input :storage
   		f.input :description
