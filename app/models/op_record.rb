@@ -54,13 +54,13 @@ class OpRecord < ActiveRecord::Base
 		if self.document
 			case self.status
 				when 'add'
-					self.document.status = 'in'
+					self.document.status = 'IN'
 				when 'borrow'
-					self.document.status = 'out'
+					self.document.status = 'OUT'
 				when 'return'
-					self.document.status = 'out'
+					self.document.status = 'OUT'
 				when 'remove'
-					self.document.status = 'removed'
+					self.document.status = 'REMOVED'
 				end
 				self.document.save
 		end

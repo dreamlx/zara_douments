@@ -4,7 +4,7 @@ permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :st
 remove_filter :op_records
 belongs_to :storage, optional: true
 
-menu priority: 5, label: 'Documents management' # so it's on the very left
+menu priority: 5, label: 'Status' # so it's on the very left
 
 	sidebar "my records", only: [:show] do
     ul do
