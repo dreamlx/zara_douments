@@ -1,5 +1,6 @@
 ActiveAdmin.register Staff do
 	actions :index, :show, :create, :edit, :update, :new
+	remove_filter :op_records
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

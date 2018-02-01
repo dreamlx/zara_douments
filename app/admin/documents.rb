@@ -1,7 +1,7 @@
 ActiveAdmin.register Document do
 actions :index, :show, :create, :edit, :update, :new
 permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status, :team_id
-
+remove_filter :op_records
 belongs_to :storage, optional: true
 
 menu priority: 5, label: 'Documents management' # so it's on the very left
