@@ -13,8 +13,8 @@ ActiveAdmin.register_page "Dashboard" do
             li link_to "Init staff", admin_staffs_path
             hr
 
-            li link_to "Document manage", admin_documents_path
-            li link_to "Operation record", admin_op_records_path
+            li link_to "File movement", admin_documents_path
+            li link_to "File status", admin_op_records_path
             #li link_to "Milestones", admin_project_milestones_path(resource)
         end
     end
