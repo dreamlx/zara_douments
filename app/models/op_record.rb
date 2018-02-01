@@ -23,7 +23,11 @@ class OpRecord < ActiveRecord::Base
 					self.errors.add(:staff_sn, 'team of document no match staff\'s team')
 				end
 			else
-				self.errors.add(:staff_sn, 'team of document no match staff\'s team')
+				if self.staff_sn == 'admin'
+				else
+					self.errors.add(:staff_sn, 'team of document no match staff\'s team')
+				end
+				
 			end
 		end
 	end

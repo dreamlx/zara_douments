@@ -6,9 +6,9 @@ ActiveAdmin.register_page "Dashboard" do
     
     panel "Steps:" do
         ol do
-            li link_to "init city", admin_cities_path
-            li link_to "init sotrage", admin_storages_path
-            li link_to "init staff code", admin_staffs_path
+            li link_to "Init city", admin_cities_path
+            li link_to "Init storage", admin_storages_path
+            li link_to "Init staff code", admin_staffs_path
             hr
 
             li link_to "Document manage", admin_documents_path

@@ -25,6 +25,8 @@ class Document < ActiveRecord::Base
 		op = OpRecord.new
 		op.document_sn = self.code
 		op.document_id = self.id
+		op.staff_sn = 'admin'
+		op.description = "added by admin #{Time.now} "
 		op.status = 'add'
 		op.save
 	end
