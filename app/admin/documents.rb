@@ -29,7 +29,7 @@ menu priority: 5, label: 'Documents management' # so it's on the very left
   	f.inputs do
   		#f.input :title
   		f.input :city
-  		f.input :code
+  		f.input :code, hint: 'format: 999999000001, code should been 12 length'
       f.input :team
       f.input :legal_entity
   		#f.input :staff

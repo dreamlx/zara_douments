@@ -36,7 +36,7 @@ permit_params :title, :code, :status
   	f.semantic_errors # shows errors on :base
   	f.inputs do
   		f.input :title
-  		f.input :code
+  		f.input :code, hint: 'format: A001001, code should been 7 length'
   		#f.input :status, collection: [['atcive','active'],['inactive','inactive']]
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons
