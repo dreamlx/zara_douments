@@ -30,6 +30,7 @@ menu priority: 5, label: 'Documents management' # so it's on the very left
   		#f.input :title
   		f.input :city
   		f.input :code
+      f.input :team
       #f.input :legal_entity
   		#f.input :staff
   		f.input :storage
