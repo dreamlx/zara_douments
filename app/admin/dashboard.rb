@@ -7,8 +7,10 @@ ActiveAdmin.register_page "Dashboard" do
     panel "Steps:" do
         ol do
             li link_to "Init city", admin_cities_path
+            li link_to "Init team", admin_teams_path
+            li link_to "Init legal entity", admin_legal_entities_path
             li link_to "Init storage", admin_storages_path
-            li link_to "Init staff code", admin_staffs_path
+            li link_to "Init staff", admin_staffs_path
             hr
 
             li link_to "Document manage", admin_documents_path
@@ -22,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
         #span I18n.t("active_admin.dashboard_welcome.welcome")
         #small I18n.t("active_admin.dashboard_welcome.call_to_action")
         
-        span 'Welcome visite Document management system'
+        span 'Welcome visite Library Management System'
         
 
       end
