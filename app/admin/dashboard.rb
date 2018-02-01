@@ -4,15 +4,15 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     
-    panel "步骤" do
+    panel "Steps:" do
         ol do
-            li link_to "初始化城市", admin_cities_path
-            li link_to "初始化库位", admin_storages_path
-            li link_to "初始化员工", admin_staffs_path
+            li link_to "init city", admin_cities_path
+            li link_to "init sotrage", admin_storages_path
+            li link_to "init staff code", admin_staffs_path
             hr
 
-            li link_to "文档管理", admin_documents_path
-            li link_to "操作记录", admin_op_records_path
+            li link_to "Document manage", admin_documents_path
+            li link_to "Operation record", admin_op_records_path
             #li link_to "Milestones", admin_project_milestones_path(resource)
         end
     end
@@ -22,7 +22,7 @@ ActiveAdmin.register_page "Dashboard" do
         #span I18n.t("active_admin.dashboard_welcome.welcome")
         #small I18n.t("active_admin.dashboard_welcome.call_to_action")
         
-        span '欢迎访问Zara 文档管理系统'
+        span 'Welcome visite Document management system'
         
 
       end

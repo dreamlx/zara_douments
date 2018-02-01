@@ -55,4 +55,5 @@ end
 # my gems
 gem 'devise'
 gem 'activeadmin'
+gem 'cancan'
 

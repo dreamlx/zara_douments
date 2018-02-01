@@ -1,4 +1,4 @@
 class Team < ActiveRecord::Base
-	has_many :op_records
+	has_many :documents
 	has_many :staffs
 end

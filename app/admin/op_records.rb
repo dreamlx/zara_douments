@@ -1,9 +1,9 @@
 ActiveAdmin.register OpRecord do
 actions :index, :show, :create, :new, :update
 
-permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn
-menu label: "操作记录", priority: 4 # so it's on the very left
-belongs_to :staff, optional: true
+permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn, :status
+menu label: "Operration Reocord", priority: 4 # so it's on the very left
+#belongs_to :staff, optional: true
 belongs_to :document, optional: true
 
 after_action :set_form, only: [:show, :edit, :update, :destroy]
