@@ -58,7 +58,7 @@ class OpRecord < ActiveRecord::Base
 				when 'borrow'
 					self.document.status = 'OUT'
 				when 'return'
-					self.document.status = 'OUT'
+					self.document.status = 'IN'
 				when 'remove'
 					self.document.status = 'REMOVED'
 				end
