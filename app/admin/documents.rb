@@ -1,6 +1,6 @@
 ActiveAdmin.register Document do
 actions :index, :show, :create, :edit, :update, :new
-permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status, :team_id, :legal_entity
+permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status, :team_id, :legal_entity_id
 remove_filter :op_records
 belongs_to :storage, optional: true
 
