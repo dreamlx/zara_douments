@@ -3,7 +3,7 @@ class OpRecord < ActiveRecord::Base
 	validates :staff_sn, presence: true
 	validates :document_sn, presence: true
 	validates :description, presence: true
-
+	validates :status, presence: true
 	# validate :exit_document
 	# def exit_document
 	# 	docment = Document.find_by(code: self.document_sn)
