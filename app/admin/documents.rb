@@ -16,7 +16,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
     selectable_column
     column :code
     column :storage do |d|
-			d.storage.code
+			link_to d.storage.code, admin_storage_path(d)
 		end
     column :legal_entity
     column :team
@@ -25,6 +25,21 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :status
     actions
   end
+
+	show do
+		attributes_table do
+      row :city
+      row :code
+			row :team
+			row :legal_entity
+			row :storage do |s|
+				s.storage.code
+			end
+			row :description
+			row :status
+    end
+    active_admin_comments
+	end
 
    form do |f|
   	f.semantic_errors # shows errors on :base
@@ -35,7 +50,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
       f.input :team
       f.input :legal_entity
   		#f.input :staff
-  		f.input :storage
+  		f.input :storage, collection: Storage.all.map{|s| [s.code, s.id]}
   		f.input :description
   		#f.input :status, :collection => [['in','in'],['out','out'],['removed','removed']]
   	end          # builds an input field for every attribute
