@@ -15,7 +15,9 @@ menu priority: 5, label: 'Status' # so it's on the very left
   index do
     selectable_column
     column :code
-    column :storage
+    column :storage do |d|
+			d.storage.code
+		end
     column :legal_entity
     column :team
     column :city
