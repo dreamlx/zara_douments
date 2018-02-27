@@ -16,11 +16,17 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :id
     column :code
     column :storage do |d|
-      link_to d.storage.code, admin_storage_path(d)
+      d.storage.code
     end
-    column :legal_entity
-    column :team
-    column :city
+    column :legal_entity do |d|
+      d.legal_entity.title
+    end
+    column :team do |d|
+      d.team.title
+    end
+    column :city do |d|
+      d.city.title
+    end
     column :description
     column :status
   end
