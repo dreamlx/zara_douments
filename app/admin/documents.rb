@@ -12,8 +12,22 @@ menu priority: 5, label: 'Status' # so it's on the very left
     end
   end
 
+  csv do
+    column :id
+    column :code
+    column :storage do |d|
+      link_to d.storage.code, admin_storage_path(d)
+    end
+    column :legal_entity
+    column :team
+    column :city
+    column :description
+    column :status
+  end
+
   index do
     selectable_column
+    column :id
     column :code
     column :storage do |d|
 			link_to d.storage.code, admin_storage_path(d)
