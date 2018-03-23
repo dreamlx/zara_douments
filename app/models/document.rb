@@ -30,4 +30,5 @@ class Document < ActiveRecord::Base
 		op.status = 'add'
 		op.save
 	end
+
 end

@@ -12,12 +12,24 @@ actions :index, :show, :create, :edit, :update, :new
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-permit_params :title, :code
+	permit_params :title, :code, :type_name
 
-sidebar "members", only: [:show] do
+	sidebar "members", only: [:show] do
     ul do
       li link_to "Staffs",    admin_team_staffs_path(resource)
       #li link_to "Records",    admin_staff_op_records_path(resource)
     end
   end
+
+
+	index do
+    selectable_column
+    column :id
+    column :title
+    
+    column :code
+    column :type
+    actions
+  end
+  
 end

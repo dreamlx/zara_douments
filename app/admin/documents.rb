@@ -2,6 +2,17 @@ ActiveAdmin.register Document do
 actions :index, :show, :create, :edit, :update, :new
 permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status, :team_id, :legal_entity_id
 remove_filter :op_records
+filter :title
+filter :code
+filter :staff
+filter :storage
+filter :city
+filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED']
+filter :legal_entity
+filter :team, collection: Team.all.map {|t| ["#{t.title} || #{t.type_name}", t.id]}
+
+#filter :by_team, as: :select, collection: Team.all.map {|t| ["#{t.title}||#{t.type_name}", t.id]}
+
 belongs_to :storage, optional: true
 
 menu priority: 5, label: 'Status' # so it's on the very left
@@ -24,6 +35,9 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :team do |d|
       d.team.title
     end
+    column :team_type do |d|
+      d.team.type_name
+    end
     column :city do |d|
       d.city.title
     end
@@ -40,6 +54,9 @@ menu priority: 5, label: 'Status' # so it's on the very left
 		end
     column :legal_entity
     column :team
+    column :team_type do |d|
+      d.team.type_name if d.team
+    end
     column :city
     column :description
     column :status
@@ -51,6 +68,9 @@ menu priority: 5, label: 'Status' # so it's on the very left
       row :city
       row :code
 			row :team
+      row :team_type do |s|
+        s.team.type_name if s.team
+      end
 			row :legal_entity
 			row :storage do |s|
 				s.storage.code
@@ -67,7 +87,8 @@ menu priority: 5, label: 'Status' # so it's on the very left
   		#f.input :title
   		f.input :city
   		f.input :code, hint: 'format: 999999000001, code should been 12 length'
-      f.input :team
+      f.input :team, collection: Team.all.map{|s| ["#{s.title} || #{s.type_name}", s.id]}
+      
       f.input :legal_entity
   		#f.input :staff
   		f.input :storage, collection: Storage.all.map{|s| [s.code, s.id]}
