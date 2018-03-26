@@ -12,7 +12,7 @@ actions :index, :show, :create, :edit, :update, :new
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-	permit_params :title, :code, :type_name
+	permit_params :title, :code
 
 	sidebar "members", only: [:show] do
     ul do
@@ -26,10 +26,9 @@ actions :index, :show, :create, :edit, :update, :new
     selectable_column
     column :id
     column :title
-    
     column :code
-    column :type
+    
     actions
   end
-  
+
 end

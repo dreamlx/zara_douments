@@ -1,7 +1,7 @@
 ActiveAdmin.register OpRecord  do
 actions :index, :show, :create, :new, :update
 
-permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn, :status
+permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn, :status, :last_return_time
 menu label: "Movement", priority: 4 # so it's on the very left
 #belongs_to :staff, optional: true
 belongs_to :document, optional: true
@@ -38,6 +38,7 @@ after_action :set_form, only: [:show, :edit, :update]
   		f.input :staff
   		f.input :document
   		f.input :description
+      f.input :last_return_time
       f.input :status, label: 'movement',:collection => [['borrow','borrow'],['return','return'],['remove','remove']]
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons

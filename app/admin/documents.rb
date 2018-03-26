@@ -1,15 +1,21 @@
 ActiveAdmin.register Document do
 actions :index, :show, :create, :edit, :update, :new
-permit_params :title, :code, :staff_id, :storage_id, :description, :city_id, :status, :team_id, :legal_entity_id
+permit_params :title, :code, :staff_id, :storage_id, 
+              :description, :city_id, :status, :team_id, 
+              :legal_entity_id, :last_return_time, :team_type_id
 remove_filter :op_records
 filter :title
 filter :code
 filter :staff
 filter :storage
 filter :city
+filter :created_at
+filter :last_return_time
 filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED']
 filter :legal_entity
-filter :team, collection: Team.all.map {|t| ["#{t.title} || #{t.type_name}", t.id]}
+filter :team
+filter :team_type
+
 
 #filter :by_team, as: :select, collection: Team.all.map {|t| ["#{t.title}||#{t.type_name}", t.id]}
 
@@ -30,18 +36,19 @@ menu priority: 5, label: 'Status' # so it's on the very left
       d.storage.code
     end
     column :legal_entity do |d|
-      d.legal_entity.title
+      d.legal_entity.title if d.legal_entity
     end
     column :team do |d|
-      d.team.title
+      d.team.title if d.team
     end
     column :team_type do |d|
-      d.team.type_name
+      d.team_type if d.team_type
     end
     column :city do |d|
-      d.city.title
+      d.city.title if d.city
     end
     column :description
+    column :last_return_time
     column :status
   end
 
@@ -55,10 +62,10 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :legal_entity
     column :team
     column :team_type do |d|
-      d.team.type_name if d.team
+      d.team_type if d.team_type
     end
     column :city
-    column :description
+    column :last_return_time
     column :status
     actions
   end
@@ -68,13 +75,12 @@ menu priority: 5, label: 'Status' # so it's on the very left
       row :city
       row :code
 			row :team
-      row :team_type do |s|
-        s.team.type_name if s.team
-      end
+      row :team_type
 			row :legal_entity
 			row :storage do |s|
 				s.storage.code
 			end
+      row :last_return_time
 			row :description
 			row :status
     end
@@ -87,11 +93,12 @@ menu priority: 5, label: 'Status' # so it's on the very left
   		#f.input :title
   		f.input :city
   		f.input :code, hint: 'format: 999999000001, code should been 12 length'
-      f.input :team, collection: Team.all.map{|s| ["#{s.title} || #{s.type_name}", s.id]}
-      
+      f.input :team
+      f.input :team_type
       f.input :legal_entity
   		#f.input :staff
   		f.input :storage, collection: Storage.all.map{|s| [s.code, s.id]}
+      f.input :last_return_time
   		f.input :description
   		#f.input :status, :collection => [['in','in'],['out','out'],['removed','removed']]
   	end          # builds an input field for every attribute
