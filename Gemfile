@@ -5,7 +5,7 @@ source 'https://ruby.taobao.org/'
 gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record
 group :production do
-  gem "pg"
+#  gem "pg"
 end
 
 group :development, :test do

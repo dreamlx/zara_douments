@@ -16,16 +16,16 @@ unless AdminUser.all.size > 0
 end
 unless TeamType.all.size > 0
 
-	TeamType.create!(type_name: 'RHQ')
-	TeamType.create!(type_name: 'CDC')
-	TeamType.create!(type_name: 'API')
-	TeamType.create!(type_name: 'GL')
-	TeamType.create!(type_name: 'APG')
-	TeamType.create!(type_name: 'COV')
-	TeamType.create!(type_name: 'MR')
-	TeamType.create!(type_name: 'OTH')
-	TeamType.create!(type_name: 'SAL')
-	TeamType.create!(type_name: 'BAN')
-	TeamType.create!(type_name: 'CUS')
-	TeamType.create!(type_name: 'TAX')
+	TeamType.create!(title: 'RHQ')
+	TeamType.create!(title: 'CDC')
+	TeamType.create!(title: 'API')
+	TeamType.create!(title: 'GL')
+	TeamType.create!(title: 'APG')
+	TeamType.create!(title: 'COV')
+	TeamType.create!(title: 'MR')
+	TeamType.create!(title: 'OTH')
+	TeamType.create!(title: 'SAL')
+	TeamType.create!(title: 'BAN')
+	TeamType.create!(title: 'CUS')
+	TeamType.create!(title: 'TAX')
 end 
