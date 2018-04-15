@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326021735) do
+ActiveRecord::Schema.define(version: 20180415104716) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(version: 20180326021735) do
     t.string   "description"
     t.string   "city_id"
     t.string   "status"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "team_id"
     t.integer  "legal_entity_id"
     t.integer  "team_type_id"
-    t.date     "last_return_time"
+    t.date     "last_return_day"
   end
 
   create_table "legal_entities", force: :cascade do |t|
@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(version: 20180326021735) do
     t.string   "document_id"
     t.string   "staff_id"
     t.string   "description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "document_sn"
     t.string   "staff_sn"
     t.string   "status"
-    t.date     "last_return_time"
+    t.date     "last_return_day"
   end
 
   create_table "staffs", force: :cascade do |t|

@@ -15,19 +15,16 @@ class OpRecord < ActiveRecord::Base
 	validate :check_staff_team
 
 	def check_staff_team
+		if self.document_sn
+			document = Document.find_by(code: self.document_sn)
+			self.errors.add(:document_sn, 'document_sn no in Status') unless document
+			return unless document
+		end
+
 		if self.staff_sn
 			staff = Staff.find_by(code: self.staff_sn)
-			document = Document.find_by(code: self.document_sn)
-			if staff and document
-				unless staff.team_id == document.team_id
-					self.errors.add(:staff_sn, 'team of document no match staff\'s team')
-				end
-			else
-				if self.staff_sn == 'admin'
-				else
-					self.errors.add(:staff_sn, 'team of document no match staff\'s team')
-				end
-				
+			if staff and self.staff_sn != 'admin'
+				self.errors.add(:staff_sn, 'team of document no match staff\'s team') unless staff.team_id == document.team_id
 			end
 		end
 	end
@@ -57,9 +54,10 @@ class OpRecord < ActiveRecord::Base
 					self.document.status = 'IN'
 				when 'borrow'
 					self.document.status = 'OUT'
-					self.document.last_return_time = self.last_return_time
+					self.document.last_return_day = self.last_return_day
 				when 'return'
 					self.document.status = 'IN'
+					self.document.last_return_day = self.created_at
 				when 'remove'
 					self.document.status = 'REMOVED'
 				end

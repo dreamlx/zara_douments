@@ -9,5 +9,6 @@ $kill idnum
 
 然后执行
 $ bundle exec thin start -p 82 -d
+$ bundle exec thin start -p 83 -d 测试
 
 
