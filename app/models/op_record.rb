@@ -31,6 +31,7 @@ class OpRecord < ActiveRecord::Base
 
 	belongs_to :staff
 	belongs_to :document
+	belongs_to :warehouse
 	
 	before_update :reset_me
 	before_create :reset_me

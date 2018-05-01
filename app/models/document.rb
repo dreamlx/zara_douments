@@ -1,4 +1,5 @@
 class Document < ActiveRecord::Base
+	belongs_to :warehouse
 	belongs_to :city
 	belongs_to :storage
 	belongs_to :staff

@@ -37,9 +37,11 @@ after_action :set_form, only: [:show, :edit, :update]
   		f.input :staff_sn, hint: " input 'admin' will skip validates"
   		f.input :staff
   		f.input :document
-  		f.input :description
+
       f.input :last_return_day
       f.input :status, label: 'movement',:collection => [['borrow','borrow'],['return','return'],['remove','remove']]
+      f.input :warehouse
+      f.input :description
   	end          # builds an input field for every attribute
   	f.actions         # adds the 'Submit' and 'Cancel' buttons
 	end
