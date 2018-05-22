@@ -13,7 +13,9 @@ after_action :set_form, only: [:show, :edit, :update]
     id_column
     column :document
     column :staff
-    column :description
+    column :last_return_day
+    column :warehouse
+    column :updated_at
     column 'movement' do |o|
       o.status
     end
@@ -38,7 +40,7 @@ after_action :set_form, only: [:show, :edit, :update]
   		f.input :staff
   		f.input :document
 
-      f.input :last_return_day
+      f.input :last_return_day, as: :datepicker
       f.input :status, label: 'movement',:collection => [['borrow','borrow'],['return','return'],['remove','remove']]
       f.input :warehouse
       f.input :barcode

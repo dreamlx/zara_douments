@@ -4,7 +4,7 @@ permit_params :title, :code, :staff_id, :storage_id,
               :description, :city_id, :status, :team_id, 
               :legal_entity_id, :last_return_day, :team_type_id, :create_date, :barcode
 remove_filter :op_records
-filter :title
+#filter :title
 filter :code
 filter :staff
 filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
@@ -54,6 +54,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :last_return_day
     column :status
     column :create_date
+    column :updated_at
   end
 
   index do
@@ -73,6 +74,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :description
     column :status
     column :create_date
+    column :updated_at
     actions
   end
 
@@ -106,7 +108,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
       f.input :legal_entity
   		#f.input :staff
   		f.input :storage, collection: Storage.all.map{|s| [s.code, s.id]}
-      f.input :last_return_day
+      #f.input :last_return_day
   		f.input :description
       f.input :create_date, as: :datepicker
   		#f.input :status, :collection => [['in','in'],['out','out'],['removed','removed']]
