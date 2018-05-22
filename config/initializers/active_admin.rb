@@ -6,6 +6,12 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Library Management System"
 
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: 'System', priority: 90
+    end
+  end
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -133,7 +139,7 @@ ActiveAdmin.setup do |config|
   # config.comments_menu = false
   #
   # You can customize the comment menu:
-  # config.comments_menu = { parent: 'Admin', priority: 1 }
+  config.comments_menu = { parent: 'System', priority: 1 }
 
   # == Batch Actions
   #

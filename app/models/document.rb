@@ -8,10 +8,13 @@ class Document < ActiveRecord::Base
 	belongs_to :legal_entity
 	has_many :op_records
 	validates :code, presence: true
+	validates :storage_id, presence: true
+	validates :create_date, presence: true
 
 	before_update :reset_me
 	before_create :reset_me
 	after_create :add_op
+
 
 	def reset_me
 		if self.status.blank?

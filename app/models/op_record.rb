@@ -56,11 +56,16 @@ class OpRecord < ActiveRecord::Base
 				when 'borrow'
 					self.document.status = 'OUT'
 					self.document.last_return_day = self.last_return_day
+					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
+					self.description = self.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
 				when 'return'
 					self.document.status = 'IN'
 					self.document.last_return_day = self.created_at
 				when 'remove'
 					self.document.status = 'REMOVED'
+					self.barcode = self.document.barcode
+					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} Removed at #{Time.now}"
+					self.description = self.description.to_s + '/br' + "#{self.staff.name} Remove at #{Time.now}"
 				end
 				self.document.save
 		end
