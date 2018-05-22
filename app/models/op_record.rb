@@ -53,19 +53,26 @@ class OpRecord < ActiveRecord::Base
 			case self.status
 				when 'add'
 					self.document.status = 'IN'
+					self.document.location = self.staff.name unless self.staff_id.nil?
 				when 'borrow'
 					self.document.status = 'OUT'
 					self.document.last_return_day = self.last_return_day
 					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
 					self.description = self.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
+					self.document.location = self.staff.name unless self.staff_id.nil?
 				when 'return'
 					self.document.status = 'IN'
 					self.document.last_return_day = self.created_at
+					self.document.location = self.staff.name unless self.staff_id.nil?
 				when 'remove'
 					self.document.status = 'REMOVED'
 					self.barcode = self.document.barcode
 					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} Removed at #{Time.now}"
 					self.description = self.description.to_s + '/br' + "#{self.staff.name} Remove at #{Time.now}"
+					self.document.location = self.warehouse
+				when 'destroy'
+					self.document.status = 'DESTROY'
+					self.document.location = self.warehouse
 				end
 				self.document.save
 		end

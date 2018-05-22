@@ -41,7 +41,7 @@ after_action :set_form, only: [:show, :edit, :update]
   		f.input :document
 
       f.input :last_return_day, as: :datepicker
-      f.input :status, label: 'movement',:collection => [['borrow','borrow'],['return','return'],['remove','remove']]
+      f.input :status, label: 'movement',:collection => [['borrow','borrow'],['return','return'],['remove','remove'], ['destroy','destroy']]
       f.input :warehouse
       f.input :barcode
       f.input :description

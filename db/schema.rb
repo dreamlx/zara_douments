@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522032359) do
+ActiveRecord::Schema.define(version: 20180522082136) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180522032359) do
     t.date     "last_return_day"
     t.date     "create_date"
     t.string   "barcode"
+    t.string   "location"
   end
 
   create_table "legal_entities", force: :cascade do |t|

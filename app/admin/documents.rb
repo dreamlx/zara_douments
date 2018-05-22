@@ -11,7 +11,7 @@ filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
 filter :city
 filter :create_date
 filter :last_return_day
-filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED']
+filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED', 'DESTROY']
 filter :legal_entity
 filter :team
 filter :team_type
@@ -32,7 +32,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
   end
 
   csv do
-    column :id
+    #column :id
     column :code
     column :barcode
     column :storage do |d|
