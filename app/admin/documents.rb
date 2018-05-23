@@ -52,6 +52,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
     end
     column :description
     column :last_return_day
+    column :location
     column :status
     column :create_date
     column :updated_at
@@ -71,6 +72,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
     #   d.team_type if d.team_type
     # end
     column :city
+    column :location
     column :description
     column :status
     column :create_date
@@ -81,6 +83,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
 	show do
 		attributes_table do
       row :city
+      row :location
       row :code
 			row :team
       row :team_type
