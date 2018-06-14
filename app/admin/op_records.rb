@@ -37,7 +37,7 @@ after_action :set_form, only: [:show, :edit, :update]
   	f.inputs do
   		f.input :document_sn
   		f.input :staff_sn, hint: " input 'admin' will skip validates"
-  		f.input :staff
+  		f.input :staff, as: :select, :collection => Staff.all.order('name').map {|staff| [staff.name, staff.id]}
   		f.input :document
 
       f.input :last_return_day, as: :datepicker

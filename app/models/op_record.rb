@@ -1,7 +1,7 @@
 class OpRecord < ActiveRecord::Base
 
-	validates :staff_sn, presence: true
-	validates :document_sn, presence: true
+	#validates :staff_sn, presence: true
+	#validates :document_sn, presence: true
 	#validates :description, presence: true
 	validates :status, presence: true
 	# validate :exit_document
