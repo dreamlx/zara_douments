@@ -2,7 +2,7 @@ class OpRecord < ActiveRecord::Base
 
 	validates :staff_sn, presence: true
 	validates :document_sn, presence: true
-	validates :description, presence: true
+	#validates :description, presence: true
 	validates :status, presence: true
 	# validate :exit_document
 	# def exit_document
@@ -53,26 +53,29 @@ class OpRecord < ActiveRecord::Base
 			case self.status
 				when 'add'
 					self.document.status = 'IN'
-					self.document.location = self.staff.name unless self.staff_id.nil?
+					self.document.location = self.staff.name unless self.staff.nil?
+					self.description = self.description.to_s + '/br' + " IN at #{Time.now}"
 				when 'borrow'
 					self.document.status = 'OUT'
 					self.document.last_return_day = self.last_return_day
 					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
-					self.description = self.description.to_s + '/br' + "#{self.staff.name} OUT at #{Time.now}"
-					self.document.location = self.staff.name unless self.staff_id.nil?
+					self.description = self.description.to_s + '/br' + " OUT at #{Time.now}"
+					self.document.location = self.staff.name unless self.staff.nil?
 				when 'return'
 					self.document.status = 'IN'
 					self.document.last_return_day = self.created_at
-					self.document.location = self.staff.name unless self.staff_id.nil?
+					self.document.location = self.staff.name unless self.staff.nil?
+					self.description = self.description.to_s + '/br' + " IN at #{Time.now}"
 				when 'remove'
 					self.document.status = 'REMOVED'
 					self.barcode = self.document.barcode
 					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} Removed at #{Time.now}"
-					self.description = self.description.to_s + '/br' + "#{self.staff.name} Remove at #{Time.now}"
+					self.description = self.description.to_s + '/br' + " Remove at #{Time.now}"
 					self.document.location = self.warehouse
 				when 'destroy'
 					self.document.status = 'DESTROY'
 					self.document.location = self.warehouse
+					self.description = self.description.to_s + '/br' + "#{self.staff.name} Destroy at #{Time.now}"
 				end
 				self.document.save
 		end

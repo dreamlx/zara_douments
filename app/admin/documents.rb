@@ -32,7 +32,7 @@ menu priority: 5, label: 'Status' # so it's on the very left
   end
 
   csv do
-    #column :id
+    column :id
     column :code
     column :barcode
     column :storage do |d|

@@ -1,5 +1,5 @@
 
-	rows = CSV::parse(File.open("./db/ALL.csv") {|f| f.read})
+	rows = CSV::parse(File.open(ARGV[0]) {|f| f.read})
 
 	# rows.each_with_index do |row, index|
 	# 	next if index == 0
@@ -38,6 +38,6 @@ rows.each_with_index do |row, index|
 		# 	c_id = nil
 		# end
 	
-		#item = Document.create!(code: row[1], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, city_id: c_id,  description: row[7])
+		item = Document.create!(code: row[0], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, city_id: c_id,  description: row[7])
 
 end
