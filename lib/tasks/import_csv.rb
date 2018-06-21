@@ -1,5 +1,5 @@
 
-	rows = CSV::parse(File.open(ARGV[0]) {|f| f.read})
+	rows = CSV::parse(File.open("./db/import_tax.csv") {|f| f.read})
 
 	# rows.each_with_index do |row, index|
 	# 	next if index == 0
@@ -24,20 +24,27 @@ rows.each_with_index do |row, index|
 			t_id = Team.find_by_title(row[4]).id
 		end
 
-
-		if LegalEntity.where(title: row[3]).count < 1 then
-			LegalEntity.create!(title: row[3])
-			l_id = LegalEntity.find_by_title(row[3]).id
+		if TeamType.where(title: row[5]).count < 1 then
+			TeamType.create!(title: row[5])
+			ty_id = TeamType.find_by_title(row[5]).id
 		else
-			l_id = LegalEntity.find_by_title(row[3]).id
+			ty_id = TeamType.find_by_title(row[5]).id
 		end
 
-		# unless row[6].nil?
-		# 	c_id = City.find_by_title(row[6].strip).id 
-		# else
-		# 	c_id = nil
-		# end
-	
-		item = Document.create!(code: row[0], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, city_id: c_id,  description: row[7])
 
-end
+			if LegalEntity.where(title: row[3]).count < 1 then
+				LegalEntity.create!(title: row[3])
+				l_id = LegalEntity.find_by_title(row[3]).id
+			else
+				l_id = LegalEntity.find_by_title(row[3]).id
+			end
+
+			unless row[6].nil?
+				c_id = City.find_by_title(row[6].strip).id 
+			else
+				c_id = nil
+			end
+		
+			item = Document.create!(code: row[0], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, team_type_id: ty_id, city_id: c_id,  description: row[7])
+
+	end
