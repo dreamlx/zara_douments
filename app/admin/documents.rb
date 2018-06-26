@@ -32,8 +32,10 @@ menu priority: 5, label: 'Status' # so it's on the very left
   end
 
   csv do
-    column :id
-    column :code
+    #column :id
+    column :code do |d|
+      ("%012d" % d.code) if d.code
+    end
     column :barcode
     column :storage do |d|
       d.storage.code if d.storage
