@@ -4,6 +4,13 @@ class OpRecord < ActiveRecord::Base
 	#validates :document_sn, presence: true
 	#validates :description, presence: true
 	validates :status, presence: true
+
+	
+	#Todo:
+	#remove 时候必填
+	#validates :barcode, presence: true
+	#
+	
 	# validate :exit_document
 	# def exit_document
 	# 	docment = Document.find_by(code: self.document_sn)
@@ -64,8 +71,11 @@ class OpRecord < ActiveRecord::Base
 				when 'return'
 					self.document.status = 'IN'
 					self.document.last_return_day = self.created_at
-					self.document.location = self.staff.name unless self.staff.nil?
+					self.document.location = ''
 					self.description = self.description.to_s + '/br' + " IN at #{Time.now}"
+
+					self.docuemnt.description = ''
+
 				when 'remove'
 					self.document.status = 'REMOVED'
 					self.barcode = self.document.barcode

@@ -57,7 +57,10 @@ menu priority: 5, label: 'Status' # so it's on the very left
     column :location
     column :status
     column :create_date
-    column :updated_at
+    # 变更未+8 北京时间
+    column :updated_at do |d|
+      d.updated_at.in_time_zone('Beijing')
+    end
   end
 
   index do

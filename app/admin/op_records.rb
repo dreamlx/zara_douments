@@ -1,7 +1,7 @@
 ActiveAdmin.register OpRecord  do
 actions :index, :show, :create, :new, :update
 
-permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn, :status, :last_return_day, :barcode, :warehouse
+permit_params :document_id, :staff_id, :description, :staff_sn, :document_sn, :status, :last_return_day, :barcode, :warehouse_id
 menu label: "Movement", priority: 4 # so it's on the very left
 #belongs_to :staff, optional: true
 belongs_to :document, optional: true
