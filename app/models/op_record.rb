@@ -30,7 +30,7 @@ class OpRecord < ActiveRecord::Base
 
 		if self.staff_sn
 			staff = Staff.find_by(code: self.staff_sn)
-			if staff and self.staff_sn != 'admin'
+			if staff and self.staff_sn != 'admin' and staff.team.title != 'chinaphan'
 				self.errors.add(:staff_sn, 'team of document no match staff\'s team') unless staff.team_id == document.team_id
 			end
 		end
