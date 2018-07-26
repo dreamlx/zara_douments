@@ -78,13 +78,13 @@ class OpRecord < ActiveRecord::Base
 
 				when 'remove'
 					self.document.status = 'REMOVED'
-					self.barcode = self.document.barcode
+					self.document.barcode = self.barcode
 					self.document.description = self.document.description.to_s + '/br' + "#{self.staff.name} Removed at #{Time.now}"
 					self.description = self.description.to_s + '/br' + " Remove at #{Time.now}"
-					self.document.location = self.warehouse
+					self.document.location = self.warehouse.title if self.warehouse
 				when 'destroy'
 					self.document.status = 'DESTROY'
-					self.document.location = self.warehouse
+					self.document.location = self.warehouse.title if self.warehouse
 					self.description = self.description.to_s + '/br' + "#{self.staff.name} Destroy at #{Time.now}"
 				end
 				self.document.save
