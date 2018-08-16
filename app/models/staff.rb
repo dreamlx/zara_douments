@@ -7,6 +7,8 @@ class Staff < ActiveRecord::Base
 	before_update :reset_me
 	before_create :reset_me
 
+	has_one :admin_user
+
 	def reset_me
 		if self.name.blank?
 			self.name = self.code

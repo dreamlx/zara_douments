@@ -1,29 +1,39 @@
 ActiveAdmin.register Document do
-actions :index, :show, :create, :edit, :update, :new
-permit_params :title, :code, :staff_id, :storage_id, 
-              :description, :city_id, :status, :team_id, 
-              :legal_entity_id, :last_return_day, :team_type_id, :create_date, :barcode, :location
-remove_filter :op_records
-#filter :title
-filter :code
-filter :staff
-filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
-filter :city
-filter :create_date
-filter :last_return_day
-filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED', 'DESTROY']
-filter :legal_entity
-filter :team
-filter :team_type
-filter :description
-filter :barcode
 
 
-#filter :by_team, as: :select, collection: Team.all.map {|t| ["#{t.title}||#{t.type_name}", t.id]}
+  actions :index, :show, :create, :edit, :update, :new
+  permit_params :title, :code, :staff_id, :storage_id, 
+                :description, :city_id, :status, :team_id, 
+                :legal_entity_id, :last_return_day, :team_type_id, :create_date, :barcode, :location
+  remove_filter :op_records
+  #filter :title
+  filter :code
+  filter :staff
+  filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
+  filter :city
+  filter :create_date
+  filter :last_return_day
+  filter :status, as: :select, collection: ['IN', 'OUT', 'REMOVED', 'DESTROY']
+  filter :legal_entity
 
-belongs_to :storage, optional: true
+  filter :team, as: :select, collection: proc { 
+    
+      if current_admin_user.staff && current_admin_user.staff.team
+        Team.where(id: current_admin_user.staff.team.id)
+      else
+        Team.all
+      end
 
-menu priority: 5, label: 'Status' # so it's on the very left
+  }
+
+  filter :team_type
+  filter :description
+  filter :barcode
+
+
+  belongs_to :storage, optional: true
+
+  menu priority: 5, label: 'Status' # so it's on the very left
 
 	sidebar "my records", only: [:show] do
     ul do
@@ -60,6 +70,17 @@ menu priority: 5, label: 'Status' # so it's on the very left
     # 变更未+8 北京时间
     column :updated_at do |d|
       d.updated_at.in_time_zone('Beijing')
+    end
+  end
+
+
+  controller do
+    def scoped_collection
+      unless current_admin_user.staff.nil?
+        Document.where(:team_id => current_admin_user.staff.team.id) 
+      else
+        Document.all
+      end
     end
   end
 
