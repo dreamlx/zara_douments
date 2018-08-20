@@ -130,7 +130,7 @@ ActiveAdmin.register Document do
   	f.inputs do
   		#f.input :title
   		f.input :city
-  		f.input :code, hint: 'format: 999999000001, code should been 12 length'
+  		f.input :code, hint: 'format: 999999000001, code should been 12 length + 1 => 13'
       f.input :barcode
       f.input :team
       f.input :team_type

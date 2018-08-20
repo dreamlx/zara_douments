@@ -6,9 +6,9 @@ class Ability
       if user.role == 'admin'
         can :manage, :all
       else
-        can [:read,:destroy], :all
+        can [:read,], :all
         can [:create,:update], :Post
-        cannot [:create,:update, :destroy],:User
+        #cannot [:create,:update, :destroy],:User
       end
     end
 end

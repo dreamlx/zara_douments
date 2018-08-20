@@ -37,7 +37,6 @@ after_action :set_form, only: [:show, :edit, :update]
         current_admin_user.staff.documents.ids.each do |id|
           ids += "#{id},"
         end
-
         OpRecord.where("document_id in (#{ids})") 
       else
         OpRecord.all
