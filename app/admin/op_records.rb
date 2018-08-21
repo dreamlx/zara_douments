@@ -6,6 +6,18 @@ menu label: "Movement", priority: 4 # so it's on the very left
 #belongs_to :staff, optional: true
 belongs_to :document, optional: true
 
+filter :staff, as: :select, collection: Staff.all.order(:name)
+filter :document
+filter :warehouse
+filter :description
+filter :created_at
+filter :updated_at
+filter :document_sn
+filter :staff_sn
+filter :barcode
+filter :status, as: :select, collection: ['add', 'borrow', 'return', 'remove', 'destroy']
+
+
 after_action :set_form, only: [:show, :edit, :update]
 
   index do

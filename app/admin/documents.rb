@@ -8,7 +8,7 @@ ActiveAdmin.register Document do
   remove_filter :op_records
   #filter :title
   filter :code
-  filter :staff
+  filter :staff, as: :select, collection: Staff.all.order(:name)
   filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
   filter :city
   filter :create_date
