@@ -12,7 +12,7 @@ set :ssh_options, {
   forward_agent: true,
   auth_methods: %w(publickey)
 }
-
+set :rails_env, 'development'
 
 # role-based syntax
 # ==================

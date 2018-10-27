@@ -1,4 +1,4 @@
-class OpRecord < ActiveRecord::Base
+class OpRecord < ApplicationRecord
 
 	#validates :staff_sn, presence: true
 	#validates :document_sn, presence: true

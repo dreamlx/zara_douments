@@ -1,4 +1,4 @@
-class LegalEntity < ActiveRecord::Base
+class LegalEntity < ApplicationRecord
 	has_many :documents
 
 	before_create :reset_me

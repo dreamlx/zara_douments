@@ -1,21 +1,20 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.8'
+gem 'rails', '5.1.6'
 # Use sqlite3 as the database for Active Record
 group :production do
 #  gem "pg"
 end
 
-group :development do
-  # ...
+gem 'puma', '~>3.7'
 
-  # 其中`capistrano-rails`包含了以下三个插件。
-  # gem 'capistrano/bundler'
-  # gem 'capistrano/rails/assets'
-  # gem 'capistrano/rails/migrations'
-  # 你也可以分别一个个加进去，但是何必呢？这些基本都是`rails`部署必须的。
-  # 直接用`gem 'capistrano-rails'`这一个就好了。
+group :development do
+    gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  
   gem 'capistrano-rails'
 
   # 对`passenger`与`rbenv`的支持
@@ -28,14 +27,14 @@ group :development, :test do
 end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'thin'
+#gem 'thin'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -61,8 +60,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
+  gem 'web-console'
+  
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

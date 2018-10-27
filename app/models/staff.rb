@@ -1,4 +1,4 @@
-class Staff < ActiveRecord::Base
+class Staff < ApplicationRecord
 	has_many :documents
 	has_many :op_records
 	belongs_to :team

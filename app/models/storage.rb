@@ -1,4 +1,4 @@
-class Storage < ActiveRecord::Base
+class Storage < ApplicationRecord
 	validates :code, presence: true
 	has_many :documents
 

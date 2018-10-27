@@ -1,4 +1,4 @@
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
 	belongs_to :warehouse
 	belongs_to :city
 	belongs_to :storage
