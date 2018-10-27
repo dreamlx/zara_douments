@@ -1,5 +1,5 @@
 
-	rows = CSV::parse(File.open("./db/import072501.csv") {|f| f.read})
+	rows = CSV::parse(File.open("./db/import1.csv") {|f| f.read})
 
 	# rows.each_with_index do |row, index|
 	# 	next if index == 0
