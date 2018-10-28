@@ -47,7 +47,7 @@ rows.each_with_index do |row, index|
 			end
 		
 			item = Document.create!(code: row[0], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, team_type_id: ty_id, city_id: c_id,  description: row[7])
-			puts item
+			puts item.to_json
 	end
   end
 
