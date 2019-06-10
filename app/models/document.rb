@@ -6,7 +6,7 @@ class Document < ApplicationRecord
 	belongs_to :team
 	belongs_to :team_type
 	belongs_to :legal_entity
-	has_many :op_records
+	has_many :op_records, dependent: :destroy
 	validates :code, presence: true
 	validates :storage_id, presence: true
 	#validates :create_date, presence: true

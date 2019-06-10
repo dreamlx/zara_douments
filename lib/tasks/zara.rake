@@ -1,12 +1,13 @@
-    filename = ARGV.first
-	rows = CSV::parse(File.open(filename) {|f| f.read})
 
-	# rows.each_with_index do |row, index|
-	# 	next if index == 0
-	# 	#Team.find_by_title(row[4]).team_type.id if row[5].nil?
-	# 	TeamType.create!(title: row[5]) if not row[5].nil? and TeamType.where(title: row[5].strip).count < 1  
+namespace :zara do
+  desc "TODO"
+  task :importcsv, [:filename] => :environment do |task, args|
+    
+    puts args[:filename]
+    rows =CSV::parse(File.open(args[:filename]) {|f| f.read})
+    puts rows.count
+    puts Storage.count
 
-	# end
 
 rows.each_with_index do |row, index|
 		next if index == 0
@@ -46,5 +47,8 @@ rows.each_with_index do |row, index|
 			end
 		
 			item = Document.create!(code: row[0], storage_id: s_id, legal_entity_id: l_id, team_id: t_id, team_type_id: ty_id, city_id: c_id,  description: row[7])
-
+			puts item.to_json
 	end
+  end
+
+end
