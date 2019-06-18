@@ -7,7 +7,7 @@ ActiveAdmin.register Document do
                 :legal_entity_id, :last_return_day, :team_type_id, :create_date, :barcode, :location
   remove_filter :op_records
   #filter :title
-  filter :code
+  filter :code 
   filter :staff, as: :select, collection: Staff.all.order(:name)
   filter :storage, as: :select, collection: Storage.all.map{|s| [s.code, s.id]}
   filter :city
@@ -43,7 +43,7 @@ ActiveAdmin.register Document do
 
   csv do
     #column :id
-    column :code do |d|
+    column :code, label: '\xEF\xBB\xBFCode' do |d|
       d.code
     end
     column :barcode
