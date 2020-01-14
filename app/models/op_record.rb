@@ -83,7 +83,7 @@ class OpRecord < ActiveRecord::Base
 					self.document.location = ''
 					self.description = self.description.to_s + '/br' + " IN at #{Time.now}"
 
-					self.document.description = ''
+					self.document.description = self.description.to_s + '/br' + " Return at #{Time.now}"
 
 				when 'remove'
 					self.document.status = 'REMOVED'
