@@ -12,3 +12,6 @@ $ bundle exec thin start -p 82 -d
 $ bundle exec thin start -p 83 -d 测试
 
 
+如果要使用82端口，必须用root来启动thin
+可以直接使用root账号。
+目前使用的是普通账号，而且使用了rvm，所以可以通过`rvmsudo thin start -p 82 -d`来启动。
